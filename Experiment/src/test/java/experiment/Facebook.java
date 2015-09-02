@@ -16,9 +16,13 @@ import util.MyListener;
 
 public class Facebook {
 	public WebDriver wdriver;
+	//create a variable for EventFiringWebDriver
 	public EventFiringWebDriver driver;
+	//boolean value for screenshot --if you set false it will highlight element
 	public static boolean screenshot=true;
+	//boolean value for highlight --if you set false it will not capture screenshot
 	public static boolean highlight=true;
+	//date --simple date format for screenshot folder name
 	public static Date dNow = new Date( );
 	public static SimpleDateFormat ft = new SimpleDateFormat("ddMMyy_HHmmss");
 	public static String screenshotFolder=ft.format(dNow);
@@ -38,9 +42,13 @@ public class Facebook {
 
 	@BeforeClass
 	public void beforeClass() {
+		//create an object for webdriver
 		wdriver = new FirefoxDriver();
+		//create an object for EventFiringWebDriver
 		driver = new EventFiringWebDriver(wdriver);
+		//this is class which implements WebDriverEventListener
 		MyListener myListener = new MyListener();
+		//registering EventFiringWebDriver to normal webdriver
 		driver.register(myListener);
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
